@@ -1,7 +1,10 @@
 <?php
 
 class {{className}} extends Eloquent {
-	protected $guarded = array();
+  use Validatable;
 
-	public static $rules = array();
+	public static $rules = [];
+
+	protected $guarded = [];
+
 }
