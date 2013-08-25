@@ -35,11 +35,11 @@ class ControllerGenerator extends Generator {
      */
     protected function getScaffoldedController($template, $name)
     {
-        $collection = strtolower(str_replace('Controller', '', $name)); // dogs
-        $modelInstance = Pluralizer::singular($collection); // dog
-        $modelClass = ucwords($modelInstance); // Dog
+        $models = strtolower(str_replace('Controller', '', $name)); // dogs
+        $model = Pluralizer::singular($models); // dog
+        $Model = ucwords($model); // Dog
 
-        foreach(array('modelInstance', 'modelClass', 'collection') as $var)
+        foreach(array('model', 'Model', 'models') as $var)
         {
             $this->template = str_replace('{{'.$var.'}}', $$var, $this->template);
         }
