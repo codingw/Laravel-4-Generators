@@ -2,7 +2,7 @@
 
 @section('main')
 
-<h1>Create {{className}}</h1>
+<h1>Create {{Model}}</h1>
 
 {{ Form::open(array('route' => '{{models}}.store')) }}
 	<ul>

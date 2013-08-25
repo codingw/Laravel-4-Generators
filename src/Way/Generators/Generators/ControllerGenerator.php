@@ -14,16 +14,16 @@ class ControllerGenerator extends Generator {
      * @param  string $name
      * @return string Compiled template
      */
-    protected function getTemplate($template, $name)
+    protected function getTemplate($template, $className)
     {
         $this->template = $this->file->get($template);
 
         if ($this->needsScaffolding($template))
         {
-            $this->template = $this->getScaffoldedController($template, $name);
+            $this->template = $this->getScaffoldedController($template, $className);
         }
 
-        return str_replace('{{name}}', $name, $this->template);
+        return str_replace('{{className}}', $className, $this->template);
     }
 
     /**
@@ -33,13 +33,16 @@ class ControllerGenerator extends Generator {
      * @param  string $name
      * @return string
      */
-    protected function getScaffoldedController($template, $name)
+    protected function getScaffoldedController($template, $className)
     {
-        $models = strtolower(str_replace('Controller', '', $name)); // dogs
-        $model = Pluralizer::singular($models); // dog
-        $Model = ucwords($model); // Dog
+        $Model = $this->cache->getModelName();  // Post
+        $Models = Pluralizer::plural($Model);   // Posts
+        $models = strtolower($Models);          // posts
+        $model = Pluralizer::singular($models); // post
 
-        foreach(array('model', 'Model', 'models') as $var)
+        dd("$model $models $Models $Model");
+
+        foreach(array('model', 'models', 'Models', 'Model', 'className') as $var)
         {
             $this->template = str_replace('{{'.$var.'}}', $$var, $this->template);
         }

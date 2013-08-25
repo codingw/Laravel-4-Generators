@@ -1,9 +1,11 @@
 <?php
 
-class {{name}} extends Eloquent {
+class {{className}} extends Eloquent {
   use Validatable;
 
 	public static $rules = [{{rules}}];
+
+  public static $customMessages = [];
 
 	protected $guarded = [];
 

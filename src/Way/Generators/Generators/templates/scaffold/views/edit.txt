@@ -2,7 +2,7 @@
 
 @section('main')
 
-<h1>Edit {{className}}</h1>
+<h1>Edit {{Model}}</h1>
 {{ Form::model(${{model}}, array('method' => 'PATCH', 'route' => array('{{models}}.update', ${{model}}->id))) }}
 	<ul>
 {{formElements}}

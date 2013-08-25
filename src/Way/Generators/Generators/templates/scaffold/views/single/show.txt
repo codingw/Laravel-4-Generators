@@ -1,6 +1,6 @@
 @section('show')
 
-<h1>Show {{className}}</h1>
+<h1>Show {{Model}}</h1>
 
 <p>{{ link_to_route('{{models}}.index', 'Return to all {{models}}') }}</p>
 

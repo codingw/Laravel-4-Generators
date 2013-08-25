@@ -35,11 +35,10 @@ class ViewGenerator extends Generator {
      */
     protected function getScaffoldedTemplate($name)
     {
-        $model = $this->cache->getModelName();
-
-        $models = Pluralizer::plural($model); // posts
-        $Models = ucwords($models); // Posts
-        $className = Pluralizer::singular($Models);
+        $Model = $this->cache->getModelName();  // Post
+        $Models = Pluralizer::plural($Model);   // Posts
+        $models = strtolower($Models);          // posts
+        $model = Pluralizer::singular($models); // post
 
         // Create and Edit views require form elements
         if ($name === 'create.blade' or $name === 'edit.blade')
@@ -50,7 +49,7 @@ class ViewGenerator extends Generator {
         }
 
         // Replace template vars in view
-        foreach(array('model', 'models', 'Models', 'className') as $var)
+        foreach(array('model', 'models', 'Models', 'Model') as $var)
         {
             $this->template = str_replace('{{'.$var.'}}', $$var, $this->template);
         }
